@@ -79,24 +79,20 @@ public:
         contactInfo = ci;
     }
     
-    // Virtual method for polymorphic display
     virtual void displayDetails() const {
         std::cout << "ID: " << id << ", Name: " << name 
                   << ", Age: " << age << ", Contact: " << contactInfo << std::endl;
     }
     
-    // Virtual method for payment. Default is 0.0.
     virtual double calculatePayment() const { return 0.0; }
 };
 
 
-// Student class: Inherits from Person and adds attributes such as enrollment date, program and GPA.
 class Student : public Person {
 protected:
-    std::string enrollmentDate;  // For simplicity using string representation of date
+    std::string enrollmentDate;  
     std::string program;
     double GPA;
-    // Aggregation: a student can enroll in several courses.
     std::vector<Course*> enrolledCourses;
     
 public:
@@ -129,21 +125,17 @@ public:
         return enrolledCourses;
     }
     
-    // Override displayDetails to include student-specific information.
     void displayDetails() const override {
         Person::displayDetails();
         std::cout << "Enrollment Date: " << enrollmentDate 
                   << "\nProgram: " << program << "\nGPA: " << GPA << std::endl;
     }
     
-    // For students, payment calculation is not implemented.
     double calculatePayment() const override {
         return 0.0;
     }
 };
 
-
-// Professor class: Inherits from Person and adds attributes like department, specialization, and hire date.
 class Professor : public Person {
 protected:
     std::string department;
@@ -359,7 +351,7 @@ public:
 class GraduateStudent : public Student {
 private:
     std::string researchTopic;
-    Professor* advisor; // Aggregation: an advisor is a professor
+    Professor* advisor; 
     std::string thesisTitle;
     
 public:
@@ -577,7 +569,7 @@ public:
                 }
             }
             
-            // Process grades:
+            
             gradeBook.addGrade(students[0]->getId(), 85.0);
             gradeBook.addGrade(students[1]->getId(), 55.0);  // failing grade
             std::cout << "\nAverage Grade: " << gradeBook.calculateAverageGrade() << std::endl;
